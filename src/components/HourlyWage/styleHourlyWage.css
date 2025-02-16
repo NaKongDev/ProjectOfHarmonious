@@ -1,0 +1,40 @@
+.box_content{
+    width: 97%;
+    /* border: 1px solid red; */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    margin-bottom: 15px;
+}
+
+.box_position{
+    color:#fff;
+    padding: 5px;
+    width: 11%;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    margin-bottom: 10px;
+}
+
+.box_money{
+    gap: 20px;
+    padding: 0 10px 0 10px;
+    border-radius: 12px;
+    background-color: rgba(255, 105, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    color: #fff;
+    height: 120px;
+    width: 230px;
+}
+
+.box_day{
+    background-color: rgba(255,255,2255);
+    color: #000;
+    font-size: 20px;
+    width: fit-content;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
