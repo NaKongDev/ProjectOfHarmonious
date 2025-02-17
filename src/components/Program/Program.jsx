@@ -20,6 +20,7 @@ function Program() {
             position: 'Employee',
         },
     ])
+    
     const [workTime, setWorkTime] = useState([
         {
             id: '001',
@@ -202,6 +203,7 @@ function Program() {
             timestamp: 1704819600000
         },
     ])
+
     let TotalAmount = 0;
 
     const [test, settest] = useState({
