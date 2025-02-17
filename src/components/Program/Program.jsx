@@ -300,7 +300,7 @@ function Program() {
                                     onClick={() => {
                                         e.Ishow = !e.Ishow
 
-                                        console.log('e.Ishow', e.Ishow);
+                                        /* console.log('e.Ishow', e.Ishow); */
                                         setHourlyWage(hourlyWage)
                                         settest({ ...test, test: '' })
                                         test.test = ''
