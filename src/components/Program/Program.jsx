@@ -20,7 +20,7 @@ function Program() {
             position: 'Employee',
         },
     ])
-    
+
     const [workTime, setWorkTime] = useState([
         {
             id: '001',
@@ -320,7 +320,7 @@ function Program() {
                                     </div> */}
                                     <div className='box_price'>
                                         <div>Total amount :</div>
-                                        <div style={{ fontSize: '30px' }}>{numberWithCommas(parseFloat(e.priceSaturday + e.priceSunday + e.priceWeekday))} ฿</div>
+                                        <div style={{ fontSize: '30px' }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)} ฿</div>
                                     </div>
                                 </div>
                             )
@@ -328,7 +328,7 @@ function Program() {
                     </div>
                     <div className='box_total_amount'>
                         Total amount :
-                        <div className='box_price' style={{ width: '30%', textAlign: 'end', marginLeft: '10px' }}>{numberWithCommas(parseFloat(TotalAmount))} ฿</div>
+                        <div className='box_price' style={{ width: '30%', textAlign: 'end', marginLeft: '10px' }}>{numberWithCommas(TotalAmount)} ฿</div>
                     </div>
                 </div>
                 <div className='box_event'>
@@ -367,21 +367,21 @@ function Program() {
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on weekdays </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(parseFloat(e.priceWeekday))}</div>
+                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceWeekday)}</div>
                                                     <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on saturday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(parseFloat(e.priceSaturday))}</div>
+                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSaturday)}</div>
                                                     <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on sunday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(parseFloat(e.priceSunday))}</div>
+                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSunday)}</div>
                                                     <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
@@ -390,7 +390,7 @@ function Program() {
                                             <div className='box_price_event' style={{ width: '20%', height: 'fit-content', margin: '5px 0' }}>
                                                 <div className='name'>Total amount :</div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(parseFloat(e.priceSaturday + e.priceSunday + e.priceWeekday))}</div>
+                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)}</div>
                                                     <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
