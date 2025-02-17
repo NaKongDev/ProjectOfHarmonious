@@ -244,9 +244,9 @@ function Program() {
         setHourlyWage(combinedData);
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('hourlyWage', hourlyWage);
-    }, [hourlyWage]);
+    }, [hourlyWage]); */
 
     return (
         <div>
