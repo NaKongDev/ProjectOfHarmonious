@@ -212,6 +212,24 @@ function Program() {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    function payRoll(position, day, time) {
+        let num = 0;
+        if (position === 'Employee' && day === 'Saturday') {
+            num = time * 60;
+        } else if (position === 'Employee' && day === 'Sunday') {
+            num = time * 100;
+        } else if (position === 'Employee' && day !== 'Saturday' && day !== 'Sunday') {
+            num = time * 40;
+        } else if (position === 'Project Lead' && day === 'Saturday') {
+            num = time * 120;
+        } else if (position === 'Project Lead' && day === 'Sunday') {
+            num = time * 150;
+        } else if (position === 'Project Lead' && day !== 'Saturday' && day !== 'Sunday') {
+            num = time * 100;
+        }
+        return num
+    }
+
     useEffect(() => {
         const combinedData = employee.map(emp => {
             const workTimes = workTime.filter(wt => wt.id === emp.id);
@@ -367,14 +385,14 @@ function Program() {
                                             </div>
                                         </div>
                                         <div style={{ display: 'flex', gap: "10px", width: '100%' }}>
-                                            <div className='box_price_event' style={{ width: '20%', height: 'fit-content', margin:'5px 0' }}>
+                                            <div className='box_price_event' style={{ width: '20%', height: 'fit-content', margin: '5px 0' }}>
                                                 <div className='name'>Total amount :</div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
                                                     <div style={{ fontSize: '50px' }}>{numberWithCommas(parseFloat(e.priceSaturday + e.priceSunday + e.priceWeekday))}</div>
                                                     <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
-                                            <div style={{ display: 'flex', overflow: 'auto', height: 'fit-content', gap:'10px',padding:'5px 0 ' }}>
+                                            <div style={{ display: 'flex', overflow: 'auto', height: 'fit-content', gap: '10px', padding: '5px 0 ' }}>
                                                 {e.workTimes.map((e2, index) => {
                                                     let date = new Date(e2.timestamp);
                                                     return (
@@ -386,9 +404,8 @@ function Program() {
                                                                 {e2.workTimeOfTheday}
                                                                 <div style={{ fontSize: '15px', marginBottom: '2px' }}>hour</div>
                                                             </div>
-                                                            <div style={{textAlign:'end'}}>
-                                                                {e.position === 'Project Lead' && e2.dayOfWeek === 'Sunday' ? e2.workTimeOfTheday * 150 : e.position === 'Project Lead' && e2.dayOfWeek === 'Saturday' ? e2.workTimeOfTheday * 120 : e.position === 'Project Lead' && e2.dayOfWeek !== 'Saturday' && e2.dayOfWeek !== 'Sunday' ? e2.workTimeOfTheday * 100 :
-                                                                    e.position === 'Employee' && e2.dayOfWeek === 'Sunday' ? e2.workTimeOfTheday * 100 : e.position === 'Employee' && e2.dayOfWeek === 'Saturday' ? e2.workTimeOfTheday * 60 : e.position === 'Employee' && e2.dayOfWeek !== 'Saturday' && e2.dayOfWeek !== 'Sunday' ? e2.workTimeOfTheday * 40 : 0} Baht
+                                                            <div style={{ textAlign: 'end' }}>
+                                                                {payRoll(e.position, e2.dayOfWeek, e2.workTimeOfTheday)} Baht
                                                             </div>
                                                         </div>
                                                     )
