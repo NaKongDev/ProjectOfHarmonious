@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './styleProgram.css'
+import { Tooltip } from 'antd';
 
 function Program() {
     const [hourlyWage, setHourlyWage] = useState()
@@ -234,13 +235,13 @@ function Program() {
 
     useEffect(() => {
         const combinedData = employee.map(emp => {
-            const workTimes = workTime.filter(wt => wt.id === emp.id);
+            const workTimes_ = workTime.filter(wt => wt.id === emp.id);
             return {
                 ...emp,
-                workTimes
+                workTimes_
             };
         });
-        /* console.log('combinedData', combinedData); */
+        console.log('combinedData', combinedData);
         setHourlyWage(combinedData);
     }, []);
 
@@ -250,23 +251,23 @@ function Program() {
 
     return (
         <div>
-            <div style={{ fontSize: '40px', marginBottom: '10px' }}>Payroll Program</div>
-            <div style={{ height: '650px', display: 'flex', gap: '20px' }}>
+            <div style={{ marginBottom: '10px', fontSize: '3vh' }}>Payroll Program</div>
+            <div style={{ height: '650px', display: 'flex', gap: '20px', flexWrap: 'wrap', width: '100%' }}>
                 <div className='box_list'>
-                    <div style={{ height: '80%', backgroundColor: 'rgba(0,0,0,0.4)', padding: '11px', borderRadius: '20px', boxShadow: '0 0 10px rgba(0, 0, 0, .5)', marginBottom: '20px' }}>
+                    <div style={{ height: '80%', backgroundColor: 'rgba(0,0,0,0.4)', padding: '11px', borderRadius: '20px', boxShadow: '0 0 10px rgba(0, 0, 0, .5)', marginBottom: '10px' }}>
                         {hourlyWage ? hourlyWage.map((e, index) => {
                             /* e.Ishow = true */
                             let Weekday = 0;
                             let Saturday = 0;
                             let Sunday = 0;
 
-                            e.workTimes.map((e) => {
+                            e.workTimes_.map((e) => {
                                 /* console.log('e.dayOfWeek',e.dayOfWeek); */
                                 if (e.dayOfWeek === 'Saturday') {
                                     Saturday += e.workTimeOfTheday
                                 } else if (e.dayOfWeek === 'Sunday') {
                                     Sunday += e.workTimeOfTheday
-                                } else if (e.dayOfWeek !== 'Saturday' && e.dayOfWeek !== 'Sunday') {
+                                } else {
                                     Weekday += e.workTimeOfTheday
                                 }
                             })
@@ -305,22 +306,24 @@ function Program() {
                                         settest({ ...test, test: '' })
                                         test.test = ''
                                     }}>
-                                    <div>
-                                        <div>No.</div>
-                                        <div style={{ fontSize: '50px' }}>{index + 1}</div>
+                                    <div style={{ height: '100%', width: '12%' }}>
+                                        <div >No.</div>
+                                        <div style={{ fontSize: '5vh' }}>{index + 1}</div>
                                     </div>
-                                    <div>
-                                        <div style={{ fontSize: '30px' }}>Name : {e.name}</div>
-                                        <div>Position : {e.position}</div>
+                                    <Tooltip placement="top" title={`Name : ${e.name}`}>
+                                    <div style={{ height: '100%', width: '40%', overflow: 'hidden', display: 'grid', }}>
+                                        <div style={{ fontSize: '2.7vh', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>Name : {e.name}</div>
+                                        <div style={{ fontSize: '1.7vh', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>Position : {e.position}</div>
                                     </div>
+                                    </Tooltip>
                                     {/* <div>
                                         <div>Work time in weekday : {e.hourInWeekday}</div>
                                         <div>Work time in saturday : {e.hourInSaturday}</div>
                                         <div>Work time in sunday : {e.hourInSunday}</div>
                                     </div> */}
                                     <div className='box_price'>
-                                        <div>Total amount :</div>
-                                        <div style={{ fontSize: '30px' }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)} ฿</div>
+                                        <div style={{ fontSize: '1.7vh', whiteSpace: 'nowrap', }}>Total amount :</div>
+                                        <div style={{ fontSize: '2.7vh', whiteSpace: 'nowrap', }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)} ฿</div>
                                     </div>
                                 </div>
                             )
@@ -328,74 +331,74 @@ function Program() {
                     </div>
                     <div className='box_total_amount'>
                         Total amount :
-                        <div className='box_price' style={{ width: '30%', textAlign: 'end', marginLeft: '10px' }}>{numberWithCommas(TotalAmount)} ฿</div>
+                        <div className='box_price' style={{ width: '30%', textAlign: 'end', marginLeft: '10px', fontSize: '3vh', display: 'grid', alignItems: 'center' }}>{numberWithCommas(TotalAmount)} ฿</div>
                     </div>
                 </div>
                 <div className='box_event'>
                     <div style={{ height: '98%', overflow: 'auto', padding: '7px', width: '99%' }}>
                         {hourlyWage ? hourlyWage.map((e, index) =>
                             e.Ishow ?
-                                <div className='box_event_list' style={{ height: '48%',/* width:'100%' */ }}>
-                                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '20px', marginBottom: '10px' }}>
+                                <div className='box_event_list'>
+                                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '20px', marginBottom: '10px',padding:'1%' }}>
                                         <div className='box_event_no'>No : {index + 1}</div>
-                                        <div style={{ fontSize: '30px' }}>Name : {e.name}</div>
-                                        <div style={{ fontSize: '20px' }}>Position : {e.position}</div>
+                                        <div style={{ fontSize: '3vh' }}>Name : {e.name}</div>
+                                        <div style={{ fontSize: '2vh' }}>Position : {e.position}</div>
                                     </div>
-                                    <div style={{ backgroundColor: 'rgba(1,1,1,0.4)', borderRadius: '15px', padding: '5px', backdropFilter: 'blur(20px)', boxShadow: '0 0 10px rgba(0, 0, 0, .5)' }}>
-                                        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                                    <div style={{ backgroundColor: 'rgba(1,1,1,0.4)', borderRadius: '15px', padding: '5px', backdropFilter: 'blur(20px)', boxShadow: '0 0 10px rgba(0, 0, 0, .5)',overflow:'auto' }}>
+                                        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px',flexWrap:'wrap' }}>
                                             <div className='box_price_event'>
                                                 <div className='name'>Work time in weekday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{e.hourInWeekday}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>hour</div>
+                                                    <div style={{ fontSize: '5vh' }}>{e.hourInWeekday}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>hour</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Work time in saturday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{e.hourInSaturday}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>hour</div>
+                                                    <div style={{ fontSize: '5vh' }}>{e.hourInSaturday}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>hour</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Work time in sunday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{e.hourInSunday}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>hour</div>
+                                                    <div style={{ fontSize: '5vh' }}>{e.hourInSunday}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>hour</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on weekdays </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceWeekday)}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
+                                                    <div style={{ fontSize: '5vh' }}>{numberWithCommas(e.priceWeekday)}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on saturday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSaturday)}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
+                                                    <div style={{ fontSize: '5vh' }}>{numberWithCommas(e.priceSaturday)}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
                                             <div className='box_price_event'>
                                                 <div className='name'>Money received on sunday </div>
                                                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSunday)}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
+                                                    <div style={{ fontSize: '5vh' }}>{numberWithCommas(e.priceSunday)}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>Baht</div>
+                                                </div>
+                                            </div>
+                                            <div className='box_price_event'>
+                                                <div className='name'>Total amount :</div>
+                                                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
+                                                    <div style={{ fontSize: '5vh' }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)}</div>
+                                                    <div style={{ fontSize: '2vh', marginBottom: '5px' }}>Baht</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div style={{ display: 'flex', gap: "10px", width: '100%' }}>
-                                            <div className='box_price_event' style={{ width: '20%', height: 'fit-content', margin: '5px 0' }}>
-                                                <div className='name'>Total amount :</div>
-                                                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: '20px' }}>
-                                                    <div style={{ fontSize: '50px' }}>{numberWithCommas(e.priceSaturday + e.priceSunday + e.priceWeekday)}</div>
-                                                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>Baht</div>
-                                                </div>
-                                            </div>
-                                            <div style={{ display: 'flex', overflow: 'auto', height: 'fit-content', gap: '10px', padding: '5px 0 ' }}>
-                                                {e.workTimes.map((e2, index) => {
+                                            <div style={{ display: 'flex', overflow: 'auto', height: 'fit-content', gap: '10px', padding: '5px 0 ', width:'100cm' }}>
+                                                {e.workTimes_.map((e2, index) => {
                                                     let date = new Date(e2.timestamp);
                                                     return (
                                                         <div className='box_price_event'>

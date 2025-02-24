@@ -5,12 +5,13 @@
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     margin-bottom: 15px;
+
 }
 
 .box_position{
     color:#fff;
     padding: 5px;
-    width: 11%;
+    width: fit-content;
     border-radius: 10px;
     font-size: 20px;
     background-color: rgba(0,0,0,0.5);

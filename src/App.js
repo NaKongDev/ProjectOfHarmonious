@@ -10,7 +10,7 @@ function App() {
   const [mode, setMode] = useState('home')
 
   return (
-    <div style={{ minHeight: '100vh', width: '100%', }}>
+    <div>
       <Nav
         mode = {mode}
         setMode = {setMode}

@@ -78,7 +78,8 @@ function HourlyWage() {
                 return (
                     <div className='box_content'>
                         <div className='box_position'>Position : {e.position}</div>
-                        <div style={{ display: 'flex', gap: '10px' }}>
+                        <div style={{ width:'100%' }}>
+                            <div style={{display: 'flex', gap: '10px',overflow:'auto',padding:'10px'}}>
                             {e.amount.map((e2) => {
                                 return (
                                     <div className='box_money'>
@@ -90,6 +91,7 @@ function HourlyWage() {
                                     </div>
                                 )
                             })}
+                            </div>
                         </div>
                     </div>
                 )
